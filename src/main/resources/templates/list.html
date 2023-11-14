@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Page</title>
+</head>
+<body>
+    <h2>List of Values</h2>
+
+    <p th:if="${not #strings.isEmpty(searchTerm)}">Results for <strong th:text="${searchTerm}"></strong>:</p>
+
+    <th:block th:if="${not #lists.isEmpty(userList)}">
+        <ul>
+            <li th:each="user : ${userList}">
+                <span th:text="${user.name}"></span> - <span th:text="${user.email}"></span>
+            </li>
+        </ul>
+    </th:block>
+    <th:block th:if="${#lists.isEmpty(userList)}">
+        <p>No results found.</p>
+    </th:block>
+
+    <a th:href="@{/}">Home</a>
+</body>
+</html>

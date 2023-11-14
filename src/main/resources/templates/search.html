@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Page</title>
+</head>
+<body>
+    <h2>Search Values</h2>
+    <form action="/search" method="post">
+        <label for="searchTerm">Search Term:</label>
+        <input type="text" id="searchTerm" name="searchTerm" required>
+        <br>
+        <button type="submit">Search</button>
+    </form>
+    
+    <li><a th:href="@{/}" href="#">Home</a></li>
+</body>
+</html>
