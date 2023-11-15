@@ -5,29 +5,24 @@ import org.springframework.web.bind.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import jakarta.annotation.PostConstruct;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Controller
 public class MyController {
-
     private static final Logger logger = LoggerFactory.getLogger(MyController.class);
-
-
     private List<User> userList = new ArrayList<>();
 
     @PostConstruct
     public void init() {
-        // Add some sample data
+        // Sample data
         userList.add(new User("John Doe", "john.doe@example.com"));
         userList.add(new User("Jane Smith", "jane.smith@example.com"));
         userList.add(new User("Bob Johnson", "bob.johnson@example.com"));
+        userList.add(new User("Elis Clay", "e.clay@example.com"));
+        userList.add(new User("kyle Reese", "kyle.Reese@example.com"));
     }
-
-
 
     @GetMapping("/")
     public String index() {
@@ -48,10 +43,8 @@ public class MyController {
 
     @GetMapping("/list")
     public String listUsers(Model model) {
-        model.addAttribute("userList", userList);
-    
+        model.addAttribute("userList", userList);    
         logger.info("User List in Model: {}", userList);
-
         return "list";
     }
     
@@ -65,20 +58,15 @@ public class MyController {
     @PostMapping("/search")
     public String search(@RequestParam String searchTerm, Model model) {
         String searchTermLowerCase = searchTerm.toLowerCase();
-    
         List<User> searchResults = userList.stream()
                 .filter(user ->
                         user.getName().toLowerCase().contains(searchTermLowerCase) ||
                         user.getEmail().toLowerCase().contains(searchTermLowerCase))
                 .collect(Collectors.toList());
-    
         model.addAttribute("searchTerm", searchTerm);
         model.addAttribute("userList", searchResults);
-    
-        // Add logging to check the flow
         logger.info("Search Term: {}", searchTerm);
         logger.info("User List in Model: {}", searchResults);
-    
         return "list";
     }
 }
