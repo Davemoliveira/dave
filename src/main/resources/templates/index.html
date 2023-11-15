@@ -5,22 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-    <title>Thymeleaf Example</title>
+    <link rel="stylesheet" href="/styles.css">
+    <title>Dave Petition Project</title>
 </head>
 <body>
-    <h1>Welcome to Thymeleaf Example</h1>
-    <ul>
-        <li><a th:href="@{/submit}" href="#">Submit Name and Email</a></li>
-        <li><a th:href="@{/list}" href="#">List Values</a></li>
-        <li><a th:href="@{/search}" href="#">Search Values</a></li>
-        <li><a th:href="@{/}" href="#">Home</a></li>
+<div class="login-page">
+    <h3><center> Petitions </h3></center>
+    <div class="form">
+    <a href="/index"> <button>Home</<button>            </a>
+    <a href="/submit"> <button>Submit Petition</<button> </a>
+    <a href="/list"> <button>List Petitions</<button>    </a>
+    <a href="/search"> <button>Search Petition</<button> </a>
+    </div>
+    <div>
+        <h5><center>Developed by David O.</center></h5>
+        <h6><center>Module: 2324-CT5171</center></h6>
 
-    </ul>
 
-
-
-    <button type="button" class="btn btn-primary btn-lg">Large button</button>
-<button type="button" class="btn btn-secondary btn-lg">Large button</button>
+        
+    </div>
     
+
 </body>
 </html>
