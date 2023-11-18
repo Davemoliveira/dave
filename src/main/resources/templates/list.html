@@ -20,11 +20,16 @@
                 <span th:text="${user.name}"></span> - <span th:text="${user.email}"></span>
             </li>
         </ul>
+        <div class="back2">
+            <a th:href="@{/}" href="#"><button>Home</button></a>
+            </div>
     </th:block>
     <th:block th:if="${#lists.isEmpty(userList)}">
         <p>No results found.</p>
     </th:block>
             </div>
           </div>
+
+
 </body>
 </html>

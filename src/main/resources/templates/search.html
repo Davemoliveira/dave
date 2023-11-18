@@ -9,19 +9,20 @@
     <title>Search Page</title>
 </head>
 <body>
-    <h2>Search Values</h2>
-    <form action="/search" method="post">
-        <label for="searchTerm">Search Term:</label>
-        <input type="text" id="searchTerm" name="searchTerm" required>
-        <br>
-        <button type="submit">Search</button>
-    </form>
+   
     
-    <li><a th:href="@{/}" href="#">Home</a></li>
-
 
     <div class="login-page">
         <h3><center>Search petitions</h3></center>
+
+        <form action="/search" method="post">
+            <label for="searchTerm">Search Term:</label>
+            <input type="text" id="searchTerm" name="searchTerm" required>
+            <button type="submit">Search</button>
+        </form>
+
+
+
             <div class="form">              
                 <p th:if="${not #strings.isEmpty(searchTerm)}">Results for <strong th:text="${searchTerm}"></strong>:</p>
                 <th:block th:if="${not #lists.isEmpty(userList)}">
@@ -30,14 +31,17 @@
                 <span th:text="${user.name}"></span> - <span th:text="${user.email}"></span>
             </li>
         </ul>
+
+ 
     </th:block>
     <th:block th:if="${#lists.isEmpty(userList)}">
         <p>No results found.</p>
     </th:block>
+
+    <div class="back2">
+        <a th:href="@{/}" href="#"><button>Home</button></a>
+        </div>
             </div>
-          </div>
-
-
 
 
 
