@@ -1,0 +1,7 @@
+node{
+    stage('SCM checkout'){
+        git 'https://github.com/Davemoliveira/dave/'
+    }
+    stage('Compile-Package')
+    sh 'mvn package'
+}
