@@ -1,0 +1,42 @@
+ipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone the GitHub repository
+                git 'https://github.com/Davemoliveira/dave/'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Build the Maven project
+                script {
+                    def mavenHome = tool 'Maven' // Maven tool installation name in Jenkins
+                    def mavenCmd = "${mavenHome}/bin/mvn"
+                    
+                    sh "${mavenCmd} clean install"
+                }
+            }
+        }
+
+        stage('Archive') {
+            steps {
+                // Archive the .war file
+                archiveArtifacts artifacts: 'target/*.war', fingerprint: true
+            }
+        }
+    }
+
+    post {
+        success {
+            // Perform actions when the build is successful
+            echo 'Build successful!'
+        }
+        failure {
+            // Perform actions when the build fails
+            echo 'Build failed!'
+        }
+    }
+}
