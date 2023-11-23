@@ -1,7 +1,47 @@
-node{
-    stage('SCM checkout'){
-        git 'https://github.com/Davemoliveira/dave/'
+pipeline {
+    agent any
+
+    // VCS
+    stages {
+        stage('Clone Repository') {
+            steps {
+                script {
+                    // Clone the repository
+                    git branch: 'main', url: 'https://github.com/Davemoliveira/dave.git'
+                }
+            }
+        }
+        
+        // BUILDING
+        stage('Build'){
+            steps{
+                sh "mvn clean install"
+                sh "mvn compile"
+            }
+        }
+
+        // TESTING
+        stage('Test'){
+            steps{
+                sh "mvn test"
+            }
+        }
+        
+        // PACKAGING
+        stage('Packaging'){
+            steps{
+                sh "mvn package"
+            }
+        }
+            
     }
-    stage('Compile-Package')
-    sh 'mvn package'
+
+    post {
+        success {
+            echo 'Pipeline succeeded! You can add more post-success actions here.'
+        }
+        failure {
+            echo 'Pipeline failed! You can add more post-failure actions here.'
+        }
+    }
 }
